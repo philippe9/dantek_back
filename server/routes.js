@@ -25,7 +25,7 @@ routes.post('/Langue/text_langue', langueController.postTextLangue)
 routes.get('/Competence/competences', competenceController.getCompetences);
 routes.get('/Competence/competence/:id_competence', competenceController.getCompetence);
 routes.get('/Competence/textesCompetence/:id_langue', competenceController.getTextesCompetence);
-routes.get('/Competence/competencesLangue', competenceController.getCompetencesLangue);
+routes.get('/Competence/competencesLangue/:id_langue', competenceController.getCompetencesLangue);
 routes.post('/Competence/competenceLangue', competenceController.postCompetenceLangue)
 routes.post('/Competence/updateCompetenceLangue', competenceController.postUpdateCompetenceLangue)
 routes.post('/Competence/deleteCompetenceLangue', competenceController.postDeleteCompetenceLangue)

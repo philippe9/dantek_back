@@ -1,0 +1,242 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Dantek-API",
+		"_postman_id": "4e234750-54b1-3de9-d886-56ab0d8af62c",
+		"description": "Api doc details ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Langue",
+			"description": "",
+			"item": [
+				{
+					"name": "Recuperer une langue a partir de son id",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/getLangue/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperer les textes d'affichage en une langue precise",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/text_langue/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperer tous les langues",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/langues",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Le nom de la langue dans les autres langues",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/noms_langue/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Toutes les autres langues dans la langue demande",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/noms_langue_autre/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ajouter le text d'affichage pout une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/text_langue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "\t{\n        \"text_selection\": \"Select an element\",\n        \"text_choix_langue\": \"Choose a language\",\n        \"text_nombre_langue\": null,\n        \"text_modal_opened\": \"Modal opened\",\n        \"text_modal_closed\": \"Modal closed\",\n        \"text_niveau_parle\": \"Spoken level\",\n        \"text_niveau_ecrit\": \"Writing level\",\n        \"text_niveau_comprehension\": \"Understanding level\",\n        \"text_ajouter_une_langue\": \"Add a language\",\n        \"text_liste_langues\": \"Language list\",\n        \"text_enregistrer\": \"Register\",\n        \"id_langue\": 2\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ajouter le nom d'une langue dans une autre langue",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/nom_langue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            \"id_langue\": 1,\n            \"id_langue_autre\": 2,\n            \"nom_autre_langue\": \"French\"\n        }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ajouter une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Langue/langue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n        \"nom_langue\": \"English\"\n    }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Competence",
+			"description": "",
+			"item": [
+				{
+					"name": "Recuperer les valeurs des competences",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/competences",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperer une competence par son identifiant",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/competence/3",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperer les noms des valeur des competences dans une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/textesCompetence/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Recuperer toutes les valeurs de competences d'une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/competencesLangue/2",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Ajouter une competence a une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/CompetenceLangue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            \"id_competence\": 1,\n            \"id_niveau\": 1,\n            \"id_langue\": 1\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Mettre  a jour la competence d'une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/updateCompetenceLangue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " {\n            \"id_competence\": 2,\n            \"id_niveau\": 1,\n            \"id_langue\": 1\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Supprimer la competence d'une langue",
+					"request": {
+						"url": "http://localhost:3000/api/Competence/deleteCompetenceLangue",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n            \"id_competence\": 2,\n            \"id_niveau\": 1,\n            \"id_langue\": 1\n  }"
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

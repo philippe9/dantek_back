@@ -9,8 +9,9 @@ const TABLES = {
     LANGUE: 'langue',
     R_AVOIR_AUTRE_NOM: 'r_avoir_autre_nom',
     R_AVOIR_COMPETENCE_LANGUE: 'r_avoir_competence_langue',
-    R_AVOIR_COMPETENCE_LANGUE: 'r_avoir_text_competence',
+    R_AVOIR_TEXT_COMPETENCE: 'r_avoir_text_competence',
     TEXT_LANGUE: 'text_langue',
+    NIVEAU: 'niveau',
 }
 const STATUS = {
     SUCESS: "Sucess",
