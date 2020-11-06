@@ -23,6 +23,11 @@ const response = {
     status: "Success",
     message: ""
 }
+const NIVEAU = {
+    PARLE: 1,
+    ECRIT: 2,
+    COMPREHENSION: 3
+}
 export {
     TABLES,
     CODES,
