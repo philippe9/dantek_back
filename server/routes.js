@@ -8,9 +8,9 @@ const routes = express();
 // Basic routes
 routes.get('/', langueController.getAllLangues);
 
-// // User routes
-// routes.post('/signup', userController.post);
-routes.get('/getAllLangues', langueController.getAllLangues);
+// Langue routes
+routes.get('/Langue/getAllLangues', langueController.getAllLangues);
+routes.get('/Langue/getLangue/:id_langue', langueController.getLangue);
 
 // // Post routes
 // routes.post('/post', postController.post); // create post
