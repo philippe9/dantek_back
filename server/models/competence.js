@@ -54,12 +54,54 @@ Competence.getTextesCompetence = (params) => {
 
 }
 Competence.getCompetencesLangue = (params) => {
-    return knex.select().from(TABLES.LANGUE).where(TABLES.LANGUE + '.id_langue', '=', params.id_langue).join(TABLES.R_AVOIR_COMPETENCE_LANGUE, TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', TABLES.LANGUE + '.id_langue').join(TABLES.COMPETENCE, TABLES.COMPETENCE + '.id_competence', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_competence').join(TABLES.NIVEAU, TABLES.NIVEAU + '.id_niveau', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_niveau').then((competences, err) => {
+    // return knex.select().from(TABLES.LANGUE).where(TABLES.LANGUE + '.id_langue', '=', params.id_langue).join(TABLES.R_AVOIR_COMPETENCE_LANGUE, TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', TABLES.LANGUE + '.id_langue').join(TABLES.COMPETENCE, TABLES.COMPETENCE + '.id_competence', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_competence').join(TABLES.NIVEAU, TABLES.NIVEAU + '.id_niveau', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_niveau').then((competences, err) => {
 
+    //     return new Promise(function(resolve, reject) {
+    //         resolve(competences);
+    //         reject(err);
+    //     })
+    // }).catch((error) => {
+    //     // console.log(error);
+    //     return new Promise(function(resolve, reject) {
+    //         reject(error);
+    //     })
+    // })
+    return knex.select(TABLES.R_AVOIR_AUTRE_NOM + ".*").from(TABLES.R_AVOIR_AUTRE_NOM).where(TABLES.R_AVOIR_AUTRE_NOM + '.id_langue_autre', '=', params.id_langue).join(TABLES.R_AVOIR_COMPETENCE_LANGUE, TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', TABLES.R_AVOIR_AUTRE_NOM + '.id_langue').groupBy('id_langue').then((competences, err) => {
         return new Promise(function(resolve, reject) {
-            resolve(competences);
-            reject(err);
+
+            competences.forEach((element, index) => {
+                knex.select().from(TABLES.R_AVOIR_COMPETENCE_LANGUE).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', '=', element.id_langue).where(TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_langue', '=', params.id_langue).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_niveau', '=', 1).join(TABLES.R_AVOIR_TEXT_COMPETENCE, TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_competence', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_competence').then((competence) => {
+                    element.niveau_1 = competence[0];
+                }).then(() => {
+                    knex.select().from(TABLES.R_AVOIR_COMPETENCE_LANGUE).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', '=', element.id_langue).where(TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_langue', '=', params.id_langue).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_niveau', '=', 2).join(TABLES.R_AVOIR_TEXT_COMPETENCE, TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_competence', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_competence').then((competence) => {
+                        // console.log(competence)
+                        element.niveau_2 = competence[0];
+
+                    })
+                }).then(() => {
+                    // knex.select().from(TABLES.R_AVOIR_COMPETENCE_LANGUE).where('id_langue', '=', element.id_langue).where('id_niveau', '=', '3').then((competence) => {
+                    knex.select().from(TABLES.R_AVOIR_COMPETENCE_LANGUE).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_langue', '=', element.id_langue).where(TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_langue', '=', params.id_langue).where(TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_niveau', '=', 3).join(TABLES.R_AVOIR_TEXT_COMPETENCE, TABLES.R_AVOIR_TEXT_COMPETENCE + '.id_competence', TABLES.R_AVOIR_COMPETENCE_LANGUE + '.id_competence').then((competence) => {
+                        element.niveau_3 = competence[0];
+                    }).then(() => {
+                        if (index == competences.length - 1) {
+                            resolve(competences);
+                        }
+
+                    })
+                }).catch((error) => {
+                    // console.log(error);
+                    // return new Promise(function(resolve, reject) {
+                    reject(error);
+                    // })
+                })
+            });
+
+            // return new Promise(function(resolve, reject) {
+
+            // reject(err);
+            // })
         })
+
     }).catch((error) => {
         // console.log(error);
         return new Promise(function(resolve, reject) {
